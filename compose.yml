@@ -1,0 +1,13 @@
+---
+version: '3.7'
+services:
+  adonis-db:
+    image: mysql:8
+    container_name: adonis-db
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: main
+    volumes:
+        - docker/volumes/adonis-db:/var/lib/mysql
+    ports:
+        - 33066:3306
