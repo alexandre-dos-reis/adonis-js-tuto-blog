@@ -1,0 +1,5 @@
+@set( 'isCurrentRoute', request.matchesRoute(namedRoute))
+
+<a class="nav-link {{ isCurrentRoute ? 'active' : '' }}" {{ isCurrentRoute ? 'aria-current="page"' : '' }} href="{{ route(namedRoute) }}">
+    {{ label }}
+</a>
