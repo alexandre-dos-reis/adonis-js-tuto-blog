@@ -1,4 +1,6 @@
-# This is an article crud example using the Adonis NodeJS framework
+# Adonis-JS-Tuto-Blog
+
+A blog site example of the Adonis JS 5 framework running with Bootstrap 5, Webpack Encore, Sass and a MySQL DB.
 
 This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=i51olb4HBgU).
 
