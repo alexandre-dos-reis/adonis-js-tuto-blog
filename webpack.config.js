@@ -142,7 +142,7 @@ Encore.configureDevServerOptions((options) => {
    */
   options.liveReload = true
   options.static.push({
-    directory: join(__dirname, './resources/views'),
+    directory: join(__dirname, './views'),
     watch: true,
   })
 })

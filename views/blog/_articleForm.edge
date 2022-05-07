@@ -1,0 +1,18 @@
+@!component('form/_input', {
+type: 'text',
+label: 'Title',
+name: 'title',
+value: article.title
+})
+@!component('form/_input', {
+type: 'textarea',
+label: 'Content',
+name: 'content',
+value: article.content
+})
+@!component('form/_input', {
+type: 'checkbox',
+label: 'Online ?',
+name: 'online',
+value: article.online
+})

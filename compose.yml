@@ -1,13 +1,32 @@
 ---
 version: '3.7'
 services:
-  adonis-db:
-    image: mysql:8
-    container_name: adonis-db
-    environment:
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: main
-    volumes:
-        - docker/volumes/adonis-db:/var/lib/mysql
-    ports:
-        - 33066:3306
+    adonis-db:
+        image: mariadb:10
+        container_name: adonis-db
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: main
+        volumes:
+            - ./docker/volumes/adonis-db:/var/lib/mysql
+        ports:
+            - 33066:3306
+        networks:
+            - backend
+    
+    adonis-adminer:
+        image: adminer:latest
+        container_name: adonis-adminer
+        restart: always
+        networks:
+            - backend
+        environment: 
+            ADMINER_DESIGN: dracula
+            ADMINER_DEFAULT_SERVER: adonis-db
+        depends_on: 
+            - adonis-db
+        ports:
+            - 9000:8080
+
+networks:
+    backend:

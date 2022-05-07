@@ -1,0 +1,12 @@
+@layout('layouts/main')
+
+@section('main')
+<h1 class="mb-3">Create an article</h1>
+<form action="{{ route('blog.newArticle') }}" method="post">
+    @!component('blog/_articleForm', { article: article})
+    @!component('form/_button', {
+    type: 'submit',
+    label: 'Create'
+    })
+</form>
+@end
