@@ -21,4 +21,3 @@ This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=
 
 - Crud on articles
 - Send email via contact form - *TODO*
-- 
