@@ -14,3 +14,8 @@ This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=
 - `docker-compose up -d`
 - `node ace migration:run`
 - `pnpm dev`
+
+## Functionalities
+
+- Crud on articles
+- Send email via contact form - *TODO*
