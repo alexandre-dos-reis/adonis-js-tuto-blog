@@ -1,4 +1,6 @@
-# This is an article crud example using the Adonis NodeJS framework
+# Adonis-JS-Tuto-Blog
+
+A blog crud example using Adonis JS 5 framework, running with Bootstrap 5, Webpack Encore, Sass and a MariaDB container.
 
 This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=i51olb4HBgU).
 
@@ -19,3 +21,4 @@ This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=
 
 - Crud on articles
 - Send email via contact form - *TODO*
+- 
