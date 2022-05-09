@@ -10,6 +10,27 @@ label: 'Content',
 name: 'content',
 value: article.content
 })
+@!component('form/_select', {
+name: 'category',
+ariaLabel: 'select-category',
+optionDefaultLabel: 'Select a category',
+isOptionDefaultSelected: true,
+options: [
+{
+id: 1,
+label: 'Politics'
+},
+{
+id: 2,
+label: 'Religion'
+},
+{
+id: 3,
+label: 'History'
+},
+]
+
+})
 @!component('form/_input', {
 type: 'checkbox',
 label: 'Online ?',

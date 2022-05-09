@@ -1,0 +1,32 @@
+<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="container">
+        <div class="row justify-content-start">
+            <div class="col-11 d-flex flex-column align-items-start justify-content-center">
+                <div class="fw-bold"><a href="{{ route('blog.editArticle', {id: article.id}) }}">{{ article.title }}</a>
+                </div>
+                @!component('functions/reduceString', {
+                string: article.content,
+                limit: 150
+                })
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-center">
+                <span class="badge {{ article.online ? 'bg-success' : 'bg-secondary' }} m-2">{{
+                    article.online ? 'online' :
+                    'offline'
+                    }}</span>
+                @set('modalId', 'modal-article-' + article.id)
+                <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#{{ modalId }}">
+                    <i class="bi bi-x"></i>
+                </button>
+                @!component('modal/_confirm', {
+                id: modalId,
+                modalLabel: 'modal-article-' + article.id,
+                modalTitle: 'Delete the article : ' + article.title,
+                modalBody: 'Are you sure you want to delete this article ?',
+                route: route('blog.deleteArticle', { id: article.id })
+                })
+            </div>
+        </div>
+    </div>
+</li>

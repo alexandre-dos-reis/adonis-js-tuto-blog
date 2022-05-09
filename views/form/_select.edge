@@ -1,0 +1,6 @@
+<select class="form-select mb-3" aria-label="{{ ariaLabel || 'dropdown' }}" name="{{ name }}">
+    <option {{ isOptionDefaultSelected && 'selected' }}>{{ optionDefaultLabel }}</option>
+    @each(o in options)
+    <option {{ !isOptionDefaultSelected && idSelected === o.id  ? 'selected' : '' }} value="{{ o.id }}">{{ o.label }}</option>
+    @end
+</select>
