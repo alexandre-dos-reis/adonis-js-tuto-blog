@@ -11,25 +11,12 @@ name: 'content',
 value: article.content
 })
 @!component('form/_select', {
-name: 'category',
+label: 'Categories',
+name: 'categoryId',
 ariaLabel: 'select-category',
-optionDefaultLabel: 'Select a category',
-isOptionDefaultSelected: true,
-options: [
-{
-id: 1,
-label: 'Politics'
-},
-{
-id: 2,
-label: 'Religion'
-},
-{
-id: 3,
-label: 'History'
-},
-]
-
+optionDefaultLabel: 'Select-a-category',
+value: article.categoryId ?? 0,
+options: categories.map(c => { c.label = c.name; return c })
 })
 @!component('form/_input', {
 type: 'checkbox',

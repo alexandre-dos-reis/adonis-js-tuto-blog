@@ -1,6 +1,16 @@
-<select class="form-select mb-3" aria-label="{{ ariaLabel || 'dropdown' }}" name="{{ name }}">
-    <option {{ isOptionDefaultSelected && 'selected' }}>{{ optionDefaultLabel }}</option>
-    @each(o in options)
-    <option {{ !isOptionDefaultSelected && idSelected === o.id  ? 'selected' : '' }} value="{{ o.id }}">{{ o.label }}</option>
+<div class="mb-3">
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <select class="form-select {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" aria-label="{{ ariaLabel || 'dropdown' }}" name="{{ name }}" id="{{ name }}">
+        @if(value === 0)
+        <option value="">--Select-a-category--</option>          
+        @end
+        @each(o in options)
+        <option {{ (Number(flashMessages.get(name)) === o.id) || (value === o.id) ? 'selected' : '' }} value="{{ o.id }}">{{ o.label }}</option>
+        @end
+    </select>
+    @if(flashMessages.has(`errors.${name}`))
+    <div class="invalid-feedback">
+        {{ flashMessages.get(`errors.${name}`) }}
+    </div>
     @end
-</select>
+</div>

@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons";
+
+html {
+    overflow-y: scroll;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// https://symfonycasts.com/screencast/turbo/transitions
+main {
+    // transition: opacity 300ms ease-in-out;
+    animation: 300ms cubic-bezier(0.15, 0.79, 0.39, 0.75) 0s 1 slideIn;
+}
+body.turbo-loading main,
+body.turbo-loaded main {
+    opacity: 0;
+}

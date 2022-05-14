@@ -13,9 +13,10 @@ This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=
 
 ## Startup
 
-- `docker-compose up -d`
-- `node ace migration:run`
-- `pnpm dev`
+- Launch DB & Adminer : `docker-compose up -d`
+- Run db migrations`node ace migration:run`
+- Run seeds / fixtures : `node ace db:seed`
+- Start dev server : `pnpm dev`
 
 ## Functionalities
 

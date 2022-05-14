@@ -1,8 +1,8 @@
-<div class="mb-3 {{ type === 'checkbox' && 'form-check form-switch'}}">
+<div class="mb-3 {{ type === 'checkbox' ? 'form-check form-switch' : '' }}">
     @if(type === 'textarea')
 
     <label for="{{ name }}" class="form-label">{{ label }}</label>
-    <textarea class="form-control {{ flashMessages.has(`errors.${name}`) && 'is-invalid' }}" 
+    <textarea class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
         name={{ name }}
         id="{{ name }}" 
         rows="3"
@@ -11,7 +11,7 @@
     
     @elseif(type === 'checkbox')
 
-    <input class="form-check-input" type="{{ type }}" role="switch" id="{{ name }}" name="{{ name }}" {{ value ? 'checked' : '' }}>
+    <input class="form-check-input" type="{{ type }}" role="switch" id="{{ name }}" name="{{ name }}" {{ flashMessages.get(name) || value ? 'checked' : '' }}>
     <label class="form-check-label" for="{{ name }}">{{ label }}</label>
 
     @else
@@ -19,7 +19,7 @@
     <label for="{{ name }}" class="form-label">{{ label }}</label>
     <input 
         type="{{ type }}" 
-        class="form-control {{ flashMessages.has(`errors.${name}`) && 'is-invalid' }}" 
+        class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
         name={{ name }} 
         id="{{ name }}" 
         aria-describedby="{{ type }}Help" 

@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class ContactController {
+export default class CategoryController {
   public async index({ view }: HttpContextContract) {
-    return view.render('contact/index')
+    return view.render('category/index')
   }
 }

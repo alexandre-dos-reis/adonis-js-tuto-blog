@@ -27,6 +27,7 @@ export default class ArticleValidator {
     title: schema.string({ trim: true }, [rules.minLength(5), rules.maxLength(255)]),
     content: schema.string({ trim: true }, [rules.minLength(5)]),
     online: schema.boolean.nullableAndOptional(),
+    categoryId: schema.number([rules.exists({ table: 'categories', column: 'id' })]),
   })
 
   /**
@@ -41,8 +42,9 @@ export default class ArticleValidator {
    *
    */
   public messages = {
-    required: 'The {{ field }} is required.',
-    minLength: 'The {{ field }} must have a minimum of {{ options.minLength }} characters.',
-    maxLenght: 'The {{ field }} must have a minimum of {{ options.minLength }} characters.',
+    'required': 'The {{ field }} is required.',
+    'minLength': 'The {{ field }} must have a minimum of {{ options.minLength }} characters.',
+    'maxLenght': 'The {{ field }} must have a minimum of {{ options.minLength }} characters.',
+    'categoryId.required': 'The category is required.',
   }
 }

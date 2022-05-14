@@ -1,9 +1,12 @@
 @layout('layouts/main')
 
 @section('main')
-<h1 class="mb-3">Edit : {{ article.title }}</h1>
-<form action="{{ route('blog.updateArticle', { id: article.id }) }}" method="post">
-    @!component('blog/_articleForm', { article: article})
+<h2 class="mb-3 text-center">Edit : {{ article.title }}</h2>
+<form class="" action="{{ route('blog.updateArticle', { id: article.id }) }}" method="post">
+    @!component('blog/_articleForm', {
+    article: article,
+    categories: categories
+    })
     @!component('form/_button', {
     type: 'submit',
     label: 'Update'

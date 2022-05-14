@@ -8,6 +8,7 @@ specifiers:
   '@adonisjs/session': ^6.2.2
   '@adonisjs/shield': ^7.0.10
   '@adonisjs/view': ^6.1.4
+  '@faker-js/faker': ^6.3.1
   '@hotwired/turbo': ^7.1.0
   '@japa/preset-adonis': ^1.0.15
   '@japa/runner': ^2.0.7
@@ -52,6 +53,7 @@ dependencies:
 
 devDependencies:
   '@adonisjs/assembler': 5.6.2_@adonisjs+core@5.7.5
+  '@faker-js/faker': 6.3.1
   '@japa/preset-adonis': 1.0.15_94faa333467d22c657bc234d4b63243e
   '@japa/runner': 2.0.7
   '@symfony/webpack-encore': 2.0.0
@@ -1606,7 +1608,6 @@ packages:
   /@faker-js/faker/6.3.1:
     resolution: {integrity: sha512-8YXBE2ZcU/pImVOHX7MWrSR/X5up7t6rPWZlk34RwZEcdr3ua6X+32pSd6XuOQRN+vbuvYNfA6iey8NbrjuMFQ==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    dev: false
 
   /@hotwired/turbo/7.1.0:
     resolution: {integrity: sha512-Q8kGjqwPqER+CtpQudbH+3Zgs2X4zb6pBAlr6NsKTXadg45pAOvxI9i4QpuHbwSzR2+x87HUm+rot9F/Pe8rxA==}

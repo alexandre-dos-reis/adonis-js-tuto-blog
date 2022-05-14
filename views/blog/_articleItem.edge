@@ -2,15 +2,17 @@
     <div class="container">
         <div class="row justify-content-start">
             <div class="col-11 d-flex flex-column align-items-start justify-content-center">
-                <div class="fw-bold"><a href="{{ route('blog.editArticle', {id: article.id}) }}">{{ article.title }}</a>
+                <div class="fw-bold">
+                    <a href="{{ route('blog.editArticle', {id: article.id}) }}"><i class="bi bi-pencil-square me-2"></i></a>{{ article.title }}
                 </div>
                 @!component('functions/reduceString', {
                 string: article.content,
-                limit: 150
+                limit: 290
                 })
+                <span class="rounded-pill btn btn-outline-primary btn-sm mt-2">{{ categories.find(c => c.id === article.category_id).name }}</span>                
             </div>
             <div class="col-1 d-flex align-items-center justify-content-center">
-                <span class="badge {{ article.online ? 'bg-success' : 'bg-secondary' }} m-2">{{
+                <span class="badge rounded-pill {{ article.online ? 'bg-success' : 'bg-secondary' }} m-2">{{
                     article.online ? 'online' :
                     'offline'
                     }}</span>

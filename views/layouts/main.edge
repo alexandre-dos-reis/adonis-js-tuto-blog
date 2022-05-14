@@ -11,10 +11,13 @@
 </head>
 
 <body>
-  @!component('layouts/nav/navbar')
+  <div class="container mt-3">
+    @!component('layouts/nav/navbar')
+  </div>
+
   @!component('flash/messages')
   <main>
-    <div class="container mt-3">
+    <div class="container mt-3 mb-4">
       @!section('main')
     </div>
   </main>

@@ -1,7 +1,7 @@
 @layout('layouts/main')
 
 @section('main')
-<h1 class="mb-3">My articles</h1>
+<h2 class="mb-3 text-center">Articles</h2>
 <div class="mb-3">
     <a href="{{ route('blog.createArticle') }}">Create an article</a>
 </div>
@@ -9,9 +9,19 @@
     @if(articles.length > 0)
     @each(a in articles)
     @!component('blog/_articleItem', {
-    article: a
+    article: a,
+    categories: categories
     })
     @end
+    <nav aria-label="Page navigation articles">
+        <ul class="pagination mt-4">
+            {{--  <li class="page-item"><a class="page-link" href="{{ route('blog.index') }}{{ anchor.url }}">Previous</a></li>  --}}
+            @each(anchor in articles.getUrlsForRange(1, articles.lastPage))
+              <li class="page-item {{ anchor.isActive ? "active" : ""}}"><a class="page-link" href="{{ route('blog.index') }}{{ anchor.url }}">{{ anchor.page }}</a></li>
+            @end
+            {{--  <li class="page-item"><a class="page-link" href="{{ route('blog.index') }}{{ anchor.url }}">Next</a></li>  --}}
+        </ul>
+    </nav>
     @else
     <p>There's no articles.</p>
     @end
