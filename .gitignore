@@ -5,4 +5,4 @@ coverage
 .DS_STORE
 tmp
 docker/volumes
-public/assets/**
+public/assets/

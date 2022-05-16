@@ -1,33 +1,44 @@
 <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="container">
         <div class="row justify-content-start">
-            <div class="col-11 d-flex flex-column align-items-start justify-content-center">
-                <div class="fw-bold">
-                    <a href="{{ route('blog.editArticle', {id: article.id}) }}"><i class="bi bi-pencil-square me-2"></i></a>{{ article.title }}
+            <div class="col-{{ auth.isLoggedIn ? '11' : '12' }} d-flex flex-column align-items-start justify-content-center">
+                @if(auth.isLoggedIn)
+                    <div class="fw-bold">
+                        <a href="{{ route('blog.editArticle', {id: article.id}) }}" class="text-decoration-none">
+                            <i class="bi bi-pencil-square me-2"></i>
+                            {{ article.title }}
+                        </a>
+                    </div>
+                @else
+                    <h3><a href="{{ route('blog.show', {slug: article.slug }) }}" class="text-decoration-none">{{ article.title }}</a></h3>
+                @end
+                {{ truncate(article.content, 250) }}
+                <div class="mt-2 w-100 d-flex justify-content-between">
+                    <span class="rounded-pill btn btn-outline-primary btn-sm">{{ article.category.name }}</span>
+                    <span class="btn-sm text-secondary">Created {{ article.createdAt.toLocaleString() }} | Updated {{ article.updatedAt.toLocaleString() }}</span>
                 </div>
-                @!component('functions/reduceString', {
-                string: article.content,
-                limit: 290
-                })
-                <span class="rounded-pill btn btn-outline-primary btn-sm mt-2">{{ categories.find(c => c.id === article.category_id).name }}</span>                
             </div>
-            <div class="col-1 d-flex align-items-center justify-content-center">
-                <span class="badge rounded-pill {{ article.online ? 'bg-success' : 'bg-secondary' }} m-2">{{
-                    article.online ? 'online' :
-                    'offline'
-                    }}</span>
+            <div class="col-{{ auth.isLoggedIn ? '1' : '0' }} d-flex align-items-center justify-content-center">
+                @if(auth.isLoggedIn)
+                    <span class="badge rounded-pill {{ article.online ? 'bg-success' : 'bg-secondary' }} m-2 p-2">{{
+                        article.online ? 'online' :
+                        'offline'
+                        }}</span>
+                @end
                 @set('modalId', 'modal-article-' + article.id)
-                <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#{{ modalId }}">
-                    <i class="bi bi-x"></i>
-                </button>
-                @!component('modal/_confirm', {
-                id: modalId,
-                modalLabel: 'modal-article-' + article.id,
-                modalTitle: 'Delete the article : ' + article.title,
-                modalBody: 'Are you sure you want to delete this article ?',
-                route: route('blog.deleteArticle', { id: article.id })
-                })
+                @if(auth.isLoggedIn)
+                    <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#{{ modalId }}">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    @!component('modal/_confirm', {
+                    id: modalId,
+                    modalLabel: 'modal-article-' + article.id,
+                    modalTitle: 'Delete the article : ' + article.title,
+                    modalBody: 'Are you sure you want to delete this article ?',
+                    route: route('blog.deleteArticle', { id: article.id })
+                    })
+                @end
             </div>
         </div>
     </div>

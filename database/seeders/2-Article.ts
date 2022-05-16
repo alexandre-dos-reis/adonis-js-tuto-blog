@@ -13,6 +13,7 @@ export default class ArticleSeeder extends BaseSeeder {
       a.content = faker.random.words(300)
       a.categoryId = faker.helpers.arrayElement((await Category.all()).map((c) => c.id))
       a.online = faker.helpers.arrayElement([true, false])
+      a.slug = a.title.toLowerCase().replace(/ /g, '-')
       articles.push(a)
     }
 

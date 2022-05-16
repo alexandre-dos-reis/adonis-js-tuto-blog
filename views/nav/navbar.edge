@@ -9,24 +9,32 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav nav nav-tabs d-flex justify-content-between w-100 flex-nowrap">
-        @!component('layouts/nav/_nav-link.edge', {
-        namedRoute: 'blog.index',
-        label: 'Articles'
-        })
-        @!component('layouts/nav/_nav-link.edge', {
-        namedRoute: 'category.index',
-        label: 'Categories'
-        })
+        @if(auth.isLoggedIn)
+          @!component('nav/_nav-link.edge', {
+          namedRoute: 'blog.index',
+          label: 'Articles'
+          })
+          @!component('nav/_nav-link.edge', {
+          namedRoute: 'category.index',
+          label: 'Categories'
+          })
+        @end
         <div class="w-100">
         </div>
-        @!component('layouts/nav/_nav-link.edge', {
+        @!component('nav/_nav-link.edge', {
         namedRoute: 'contact.index',
         label: 'Contact'
         })
-        @!component('layouts/nav/_nav-link.edge', {
-        namedRoute: 'login.index',
-        label: 'Login'
-        })
+        @if(auth.isLoggedIn)
+          <form action="{{ route('logout') }}" method="post">
+            <button type="submit" class="btn text-danger">Logout</button>
+          </form>
+        @else
+          @!component('nav/_nav-link.edge', {
+          namedRoute: 'login',
+          label: 'Login'
+          })
+        @endif
       </div>
     </div>
   </div>

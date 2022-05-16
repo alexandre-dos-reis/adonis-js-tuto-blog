@@ -1,29 +1,34 @@
 @layout('layouts/main')
 
 @section('main')
+
 <h2 class="mb-3 text-center">Articles</h2>
-<div class="mb-3">
-    <a href="{{ route('blog.createArticle') }}">Create an article</a>
-</div>
+@if(auth.isLoggedIn)
+    <div class="mb-3">
+        <a href="{{ route('blog.createArticle') }}">Create an article</a>
+    </div>
+@else
+    <div class="mb-3 d-flex justify-content-center">
+        <h5>
+            <span class="badge rounded-pill bg-warning text-dark me-1">Hello ! &#128515;</span>
+            <span class="badge bg-secondary rounded-pill">{{ articles.total }} article{{ articles.total !== 1 ? 's' : '' }} online</span>
+            <span class="badge bg-success rounded-pill"><a class="text-white" href="{{ route('contact.index') }}">Say hi !</a></span>
+        </h5>
+    </div>
+@end
 <ul class="list-group">
     @if(articles.length > 0)
-    @each(a in articles)
-    @!component('blog/_articleItem', {
-    article: a,
-    categories: categories
-    })
-    @end
-    <nav aria-label="Page navigation articles">
-        <ul class="pagination mt-4">
-            {{--  <li class="page-item"><a class="page-link" href="{{ route('blog.index') }}{{ anchor.url }}">Previous</a></li>  --}}
-            @each(anchor in articles.getUrlsForRange(1, articles.lastPage))
-              <li class="page-item {{ anchor.isActive ? "active" : ""}}"><a class="page-link" href="{{ route('blog.index') }}{{ anchor.url }}">{{ anchor.page }}</a></li>
-            @end
-            {{--  <li class="page-item"><a class="page-link" href="{{ route('blog.index') }}{{ anchor.url }}">Next</a></li>  --}}
-        </ul>
-    </nav>
+        @each(a in articles)
+            @!component('blog/_articleItem', {
+            article: a,
+            categories: categories
+            })
+        @end
+        @!component('pagination/index', {
+            items: articles
+        })
     @else
-    <p>There's no articles.</p>
+        <p>There's no articles.</p>
     @end
 </ul>
 @end

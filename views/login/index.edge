@@ -1,9 +1,28 @@
 @layout('layouts/main')
 
 @section('main')
+
 <h2 class="mb-3 text-center">Login</h2>
 <div class="mb-3">
     <a href="{{ route('blog.index') }}">Back to home</a>
 </div>
+<form class="" action="{{ route('auth')}}" method="post">
+    @!component('form/_input', {
+    type: 'text',
+    label: 'Email',
+    name: 'email',
+    value: ''
+    })
+    @!component('form/_input', {
+    type: 'password',
+    label: 'Password',
+    name: 'password',
+    value: ''
+    })
+    @!component('form/_button', {
+    type: 'submit',
+    label: 'Se connecter'
+    })
+</form>
 
 @end

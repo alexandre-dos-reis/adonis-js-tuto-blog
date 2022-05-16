@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons";
+@import "./functions/main-anim.scss";
 
 html {
     overflow-y: scroll;
@@ -19,7 +20,7 @@ html {
 // https://symfonycasts.com/screencast/turbo/transitions
 main {
     // transition: opacity 300ms ease-in-out;
-    animation: 300ms cubic-bezier(0.15, 0.79, 0.39, 0.75) 0s 1 slideIn;
+    @include mainAnim(300ms);
 }
 body.turbo-loading main,
 body.turbo-loaded main {

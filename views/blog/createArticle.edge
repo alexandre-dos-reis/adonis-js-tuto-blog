@@ -2,7 +2,7 @@
 
 @section('main')
 <h2 class="mb-3 text-center">Create an article</h2>
-<form class="" action="{{ route('blog.newArticle') }}" method="post">
+<form action="{{ route('blog.newArticle') }}" method="post">
     @!component('blog/_articleForm', {
     article: article,
     categories: categories

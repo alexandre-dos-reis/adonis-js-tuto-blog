@@ -1,5 +1,12 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  belongsTo,
+  BelongsTo,
+  beforeSave,
+  beforeUpdate,
+} from '@ioc:Adonis/Lucid/Orm'
 import Category from './Category'
 
 export default class Article extends BaseModel {
@@ -8,6 +15,9 @@ export default class Article extends BaseModel {
 
   @column()
   public title: string
+
+  @column()
+  public slug: string
 
   @column()
   public content: string
@@ -26,4 +36,10 @@ export default class Article extends BaseModel {
 
   @belongsTo(() => Category)
   public category: BelongsTo<typeof Category>
+
+  @beforeSave()
+  @beforeUpdate()
+  public static async createSlug(article: Article) {
+    article.slug = article.title.toLowerCase().replace(/ /g, '-')
+  }
 }

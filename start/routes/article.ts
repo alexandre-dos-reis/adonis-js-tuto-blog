@@ -10,4 +10,6 @@ Route.group(() => {
   Route.post('/update/:id', 'BlogController.updateArticle').as('blog.updateArticle')
 
   Route.post('/delete/:id', 'BlogController.deleteArticle').as('blog.deleteArticle')
+
+  Route.get('/:slug', 'BlogController.show').as('blog.show')
 }).prefix('/article')

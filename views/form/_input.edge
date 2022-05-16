@@ -2,7 +2,7 @@
     @if(type === 'textarea')
 
     <label for="{{ name }}" class="form-label">{{ label }}</label>
-    <textarea class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
+    <textarea is="textarea-autogrow" class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
         name={{ name }}
         id="{{ name }}" 
         rows="3"

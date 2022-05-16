@@ -12,11 +12,10 @@
 
 <body>
   <div class="container mt-3">
-    @!component('layouts/nav/navbar')
+    @!component('nav/navbar')
   </div>
-
-  @!component('flash/messages')
   <main>
+    @!component('flash/messages')
     <div class="container mt-3 mb-4">
       @!section('main')
     </div>
