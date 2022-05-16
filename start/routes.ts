@@ -4,4 +4,5 @@ import './routes/category'
 import './routes/security'
 
 Route.on('/').redirect('blog.index').as('home')
-Route.get('/contact', 'ContactController.index').as('contact.index')
+Route.get('/contact', 'ContactController.index').as('contact')
+Route.post('/contact', 'ContactController.sendEmail').as('sendEmail')

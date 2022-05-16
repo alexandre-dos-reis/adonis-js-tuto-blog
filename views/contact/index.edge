@@ -2,4 +2,22 @@
 
 @section('main')
 <h2 class="mb-3 text-center">Contact</h2>
+<form action="{{ route('sendEmail') }}" method="post">
+    @!component('form/_input', {
+    type: 'email',
+    label: 'Your email',
+    name: 'email',
+    })
+    @!component('form/_input', {
+    type: 'text',
+    label: 'Subject',
+    name: 'subject',
+    })
+    @!component('form/_input', {
+    type: 'textarea',
+    label: 'Content',
+    name: 'content',
+    })
+    <button class="btn btn-primary" type="submit">Send email</button>
+</form>
 @end

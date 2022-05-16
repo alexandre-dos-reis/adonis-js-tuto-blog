@@ -13,6 +13,13 @@ services:
             - 33066:3306
         networks:
             - backend
+
+    adonis-maildev:
+        container_name: adonis-maildev
+        ports:
+            - 1080:1080
+            - 1025:1025
+        image: maildev/maildev
     
     adonis-adminer:
         image: adminer:latest

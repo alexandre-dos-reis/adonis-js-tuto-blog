@@ -13,10 +13,18 @@ This is based on a [tutorial made by Grafikart](https://www.youtube.com/watch?v=
 
 ## Startup
 
-- Launch DB & Adminer : `docker-compose up -d`
-- Run db migrations`node ace migration:run`
+- Launch MariaDB Database, MailDev & Adminer : `docker-compose up -d`
+- Run db migrations : `node ace migration:run`
 - Run seeds / fixtures : `node ace db:seed`
 - Start dev server : `pnpm dev`
+
+## Services
+
+You should have the following service running :
+
+- AdonisJS app on `localhost:3333`
+- Adminer on port `localhost:9000`
+- MailDev on port `localhost:1080`
 
 ## Functionalities
 

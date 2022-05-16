@@ -1,6 +1,5 @@
 <div class="mb-3 {{ type === 'checkbox' ? 'form-check form-switch' : '' }}">
     @if(type === 'textarea')
-
     <label for="{{ name }}" class="form-label">{{ label }}</label>
     <textarea is="textarea-autogrow" class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}" 
         name={{ name }}
