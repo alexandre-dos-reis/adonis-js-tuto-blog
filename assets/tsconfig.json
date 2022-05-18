@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "h",
+        "strict": true,
+        "target": "ES5",
+        "lib": [
+          "DOM",
+          "DOM.Iterable",
+          "ES6",
+        ],
+        "esModuleInterop": true
+    },
+}

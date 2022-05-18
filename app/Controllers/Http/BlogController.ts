@@ -2,27 +2,53 @@ import { HttpContextContract as ctx } from '@ioc:Adonis/Core/HttpContext'
 import Article from 'App/Models/Article'
 import Category from 'App/Models/Category'
 import ArticleValidator from 'App/Validators/ArticleValidator'
+import { marked } from 'marked'
 
 export default class BlogController {
   // https://stackoverflow.com/questions/57951785/adonis-js-pagination-with-dynamic-query-building
-  public async index({ view, request, auth }: ctx) {
-    const queryArticles = Article.query().preload('category').orderBy('createdAt', 'desc')
+  async index({ view, request, auth }: ctx) {
+    const queryArticles = Article.query().preload('category').orderBy('updatedAt', 'desc')
 
     if (auth.use('web').isGuest) {
       queryArticles.where('online', '=', true)
     }
-    // const articles = await Database.from(Article.table).paginate(page, limit)
+
+    let articles = await queryArticles.paginate(request.input('page', 1), 8)
+
+    articles.map((a) => {
+      a.content = marked.parse(a.content, {
+        gfm: true,
+        breaks: true,
+        sanitize: false, //https://marked.js.org/using_advanced
+        smartLists: true,
+        smartypants: false,
+      })
+    })
+
     return view.render('blog/index', {
-      articles: await queryArticles.paginate(request.input('page', 1), 8),
+      articles,
     })
   }
 
-  public async show({ view, params }: ctx) {
-    const article = await Article.query().where('slug', '=', params.slug).first()
+  async show({ view, params, response }: ctx) {
+    let article = await Article.query().where('slug', '=', params.slug).first()
+
+    if (article === null) {
+      return response.notFound()
+    }
+
+    article.content = marked.parse(article.content, {
+      gfm: true,
+      breaks: true,
+      sanitize: false, //https://marked.js.org/using_advanced
+      smartLists: true,
+      smartypants: false,
+    })
+
     return view.render('blog/showArticle.edge', { article })
   }
 
-  public async createArticle({ view, request, response, session }: ctx) {
+  async createArticle({ view, request, response, session }: ctx) {
     const article = new Article()
     const categories = await Category.query().orderBy('name')
 
@@ -39,7 +65,7 @@ export default class BlogController {
     })
   }
 
-  public async updateArticle({ view, params, request, response, session }: ctx) {
+  async updateArticle({ view, params, request, response, session }: ctx) {
     const article = await Article.findOrFail(params.id)
     const categories = await Category.query().orderBy('name')
 
@@ -56,7 +82,7 @@ export default class BlogController {
     })
   }
 
-  public async deleteArticle({ params, response, session }: ctx) {
+  async deleteArticle({ params, response, session }: ctx) {
     const article = await Article.findOrFail(params.id)
     article.delete()
     session.flash({ success: `The article ${article.title} was deleted !` })
