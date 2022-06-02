@@ -1,3 +1,16 @@
 <div class="mb-3">
-    <editor-component name="content" value="{{ flashMessages.get('content') || value || '' }}" class="md-editor"></editor-component>
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <editor-component 
+        name="{{ name }}" 
+        value="{{ flashMessages.get(name) || value || '' }}" 
+        class="form-control {{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }} p-0"
+    >
+    </editor-component>
+    @if(flashMessages.has(`errors.${name}`))
+
+    <div class="invalid-feedback">
+        {{ flashMessages.get(`errors.${name}`) }}
+    </div>
+
+    @end
 </div>
